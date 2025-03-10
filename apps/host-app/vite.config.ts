@@ -2,7 +2,7 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
-// import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite';
 
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
@@ -24,7 +24,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    // tailwindcss(),
+    tailwindcss(),
     federation({
       name: 'host-app',
       filename: 'remoteEntry.js',
@@ -32,6 +32,10 @@ export default defineConfig({
         'books-frontend': 'http://localhost:4200/assets/remoteEntry.js',
         'my-remote-app': 'http://localhost:5001/assets/remoteEntry.js',
       },
+      // exposes: {
+      //   // './App': './src/app/app.tsx',
+      //   './tailwind-styles': './src/app/index.css',
+      // },
       shared: {
         react: {
           singleton: true,
@@ -46,10 +50,6 @@ export default defineConfig({
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
   ],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
   build: {
     outDir: '../../dist/apps/host-app',
     emptyOutDir: true,

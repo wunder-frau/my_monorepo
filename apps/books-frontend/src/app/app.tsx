@@ -104,8 +104,8 @@ import {
   Routes,
   Link,
 } from 'react-router-dom';
-
-import NxWelcome from './nx-welcome.js';
+import './index.css';
+//import NxWelcome from './nx-welcome.js';
 import bookService from './services/books.js';
 import { Book } from './types.js';
 
@@ -147,7 +147,6 @@ const App = () => {
 
   return (
     <div>
-      lol
       <Router>
         {/* Header with authentication and books state */}
         <Header
@@ -157,7 +156,7 @@ const App = () => {
           setBooks={setBooks}
         />
 
-        <NxWelcome title="books-frontend" />
+        {/* <NxWelcome title="books-frontend" /> */}
         {/* Application routes */}
         <Routes>
           <Route

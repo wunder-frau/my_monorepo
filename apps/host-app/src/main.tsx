@@ -1,7 +1,6 @@
-import { StrictMode } from 'react';
+import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import React from 'react';
-import App from './app/app';
+import App from './app/app.js';
 import './app/index.css';
 
 console.log('React version remote::', React.version);
