@@ -1,0 +1,38 @@
+{
+  "extends": "../../tsconfig.base.json",  // Path to your base tsconfig file
+
+  "compilerOptions": {
+    "target": "ESNext",                   // Use the latest version of ECMAScript
+    "module": "Node16",                   // Use Node.js 16-style modules
+    "moduleResolution": "node16",
+    "lib": ["dom", "esnext"], // Add "dom" here         // Use Node.js 16-style module resolution
+    "esModuleInterop": false,             // Disallow automatic interop between CommonJS and ESModules
+    "allowSyntheticDefaultImports": true, // Allow synthetic default imports
+    "strict": true,                       // Enable strict type-checking
+    "jsx": "react-jsx",                   // Use the new JSX transform (React 17+)
+    "allowJs": false,                     // Do not allow JavaScript files
+    "types": ["vite/client"],             // Include Vite's client types for development
+    "baseUrl": ".",                       // Base directory for the module resolution
+    "paths": {                            // Path aliases for cleaner imports
+      "@services/*": ["src/services/*"],
+      "@components/*": ["src/components/*"],
+      "@types/*": ["src/types/*"]
+    }
+  },
+
+"include": [
+  "src/**/*",
+  "components/**/*"
+],
+
+  "files": [],                           // You can specify specific files if needed
+
+  "references": [                        // References to other TypeScript configurations (for monorepos)
+    {
+      "path": "./tsconfig.app.json"      // Reference to app-specific config (if any)
+    },
+    {
+      "path": "./tsconfig.spec.json"     // Reference to test-specific config (if any)
+    }
+  ]
+}
