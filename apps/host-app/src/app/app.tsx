@@ -20,18 +20,16 @@ export function App() {
             Welcome to the Host App 🚀
           </span>
         </h1>
-        {/* <Suspense fallback={<p>Loading ChatBot...</p>}>
+        <div className="fixed bottom-6 right-6 p-4 bg-transparent">
           <ChatBot />
-        </Suspense> */}
+        </div>
+
         <nav className="flex justify-center space-x-4 my-4">
           <Link to="/start" className="p-2 bg-blue-500 text-white rounded">
             Books Frontend
           </Link>
           <Link to="/remote" className="p-2 bg-green-500 text-white rounded">
             My Remote App
-          </Link>
-          <Link to="/chatbot" className="p-2 bg-pink-700 text-white rounded">
-            Chatbot
           </Link>
         </nav>
 
