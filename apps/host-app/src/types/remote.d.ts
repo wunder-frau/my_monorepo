@@ -9,3 +9,8 @@ declare module 'books-frontend/App' {
   const BooksFrontend: React.FC;
   export default BooksFrontend;
 }
+
+declare module 'chatbot/App' {
+  const ChatBot: React.FC;
+  export default ChatBot;
+}

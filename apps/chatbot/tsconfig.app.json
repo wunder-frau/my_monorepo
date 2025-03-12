@@ -7,7 +7,9 @@
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
       "vite/client"
-    ]
+    ],
+    "module": "Node16",
+    "moduleResolution": "Node16"
   },
   "exclude": [
     "src/**/*.spec.ts",

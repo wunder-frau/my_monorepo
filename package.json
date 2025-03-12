@@ -7,11 +7,13 @@
     "build:remote": "cd apps/my-remote-app && vite build",
     "build:host": "cd apps/host-app && vite build",
     "build:books": "cd apps/books-frontend && vite build",
+    "build:chatbot": "cd apps/chatbot && vite build",
     "preview:host": "cd apps/host-app && vite preview --port 5000",
     "preview:remote": "cd apps/my-remote-app && vite preview --port 5001 --strictPort",
     "preview:books": "cd apps/books-frontend && vite preview --port 4200 --strictPort",
-    "build:all": "concurrently 'npm run build:host' 'npm run build:remote' 'npm run build:books'",
-    "preview:all": "concurrently 'npm run preview:host' 'npm run preview:remote' 'npm run preview:books'"
+    "preview:chatbot": "cd apps/chatbot && vite preview --port 4700 --strictPort",
+    "build:all": "concurrently 'npm run build:host' 'npm run build:remote' 'npm run build:books' 'npm run build:chatbot'",
+    "preview:all": "concurrently 'npm run preview:host' 'npm run preview:remote' 'npm run preview:books' 'npm run preview:chatbot'"
   },
   "engines": {
     "node": ">=22.14.0"

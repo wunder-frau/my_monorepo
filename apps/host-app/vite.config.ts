@@ -31,6 +31,7 @@ export default defineConfig({
       remotes: {
         'books-frontend': 'http://localhost:4200/assets/remoteEntry.js',
         'my-remote-app': 'http://localhost:5001/assets/remoteEntry.js',
+        chatbot: 'http://localhost:4700/assets/remoteEntry.js',
       },
       // exposes: {
       //   // './App': './src/app/app.tsx',
