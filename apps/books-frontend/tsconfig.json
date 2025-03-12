@@ -24,7 +24,8 @@
   "src/**/*",
   "src/**/*.ts",
   "src/**/*.tsx",
-  "components/**/*"
+  "components/**/*",
+  "vite-env.d.ts"
 ],
 
   "files": [],                           // You can specify specific files if needed

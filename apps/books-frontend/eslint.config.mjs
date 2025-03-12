@@ -1,7 +1,7 @@
-import nx from '@nx/eslint-plugin'; // Use ES module imports
-import baseConfig from '../../eslint.config.js'; // Use ES module imports
+import nx from '@nx/eslint-plugin';
+import baseConfig from '../../eslint.config.js';
 
-export default [
+const eslintConfig = [
   ...baseConfig,
   ...nx.configs['flat/react'],
   {
@@ -10,3 +10,5 @@ export default [
     rules: {},
   },
 ];
+
+export default eslintConfig;

@@ -9,11 +9,13 @@ export function App() {
     <Router>
       <div className="bg-gray-100 min-h-screen p-5">
         <h1 className="text-2xl font-bold text-center text-blue-600">
-          Welcome to the Host App 🚀
+          <span role="img" aria-label="rocket">
+            Welcome to the Host App 🚀
+          </span>
         </h1>
 
         <nav className="flex justify-center space-x-4 my-4">
-          <Link to="/" className="p-2 bg-blue-500 text-white rounded">
+          <Link to="/start" className="p-2 bg-blue-500 text-white rounded">
             Books Frontend
           </Link>
           <Link to="/remote" className="p-2 bg-green-500 text-white rounded">
@@ -23,7 +25,7 @@ export function App() {
 
         <Suspense fallback={<p>Loading...</p>}>
           <Routes>
-            <Route path="/" element={<BooksFrontend />} />
+            <Route path="/*" element={<BooksFrontend />} />{' '}
             <Route path="/remote" element={<RemoteApp />} />
           </Routes>
         </Suspense>

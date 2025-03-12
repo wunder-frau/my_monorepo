@@ -1,10 +1,10 @@
 export default {
-  displayName: 'host-app',
+  displayName: 'chatbot',
   preset: '../../jest.preset.cjs',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
     '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/react/babel'] }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/apps/host-app',
+  coverageDirectory: '../../coverage/apps/chatbot',
 };
