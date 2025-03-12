@@ -106,7 +106,9 @@ const App = () => {
 
         {/* Footer components */}
         {/* <ChatBot isFooter={true} /> */}
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </Router>
     </div>
   );

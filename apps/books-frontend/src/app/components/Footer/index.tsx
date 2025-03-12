@@ -1,9 +1,11 @@
-const footerLinks = [{ name: 'GitHub', href: 'https://github.com/wunder-frau' }]
+const footerLinks = [
+  { name: 'GitHub', href: 'https://github.com/wunder-frau' },
+];
 
 const Footer = () => {
   return (
     <div className="bg-white py-8 text-gray-900">
-      <hr className="my-4 border-t border-gray-300" />
+      {/* <hr className="my-4 border-t border-gray-300" /> */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="text-sm">
@@ -30,7 +32,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
