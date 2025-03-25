@@ -1,0 +1,41 @@
+{
+  "name": "api-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api-app/src",
+  "projectType": "application",
+  "root": "apps/api-app",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "root": "apps/api-app",
+        "outputPath": "dist/apps/api-app"
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "api-app:build",
+        "dev": true,
+        "port": 5200
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/api-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/apps/api-app"],
+      "options": {
+        "jestConfig": "apps/api-app/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
