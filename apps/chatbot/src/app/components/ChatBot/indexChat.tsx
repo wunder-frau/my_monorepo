@@ -1,23 +1,40 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { GiBookshelf } from 'react-icons/gi';
 import BotMessage from './BotMessage.js';
 import ChatInput from './ChatInput.js';
 import UserMessage from './UserMessage.js';
+import { Message } from '../../../types.js';
 
-interface Props {
-  isFooter?: boolean;
-}
-
-const ChatBot = ({ isFooter = false }: Props) => {
+const ChatBot = () => {
   const [showChat, setShowChat] = useState(false);
+  const [userMessage, setUserMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessgaes] = useState<Message[]>([
+    { role: 'assistant', content: 'Hello, how may I help you?' },
+  ]);
 
-  //console.log('isFooter:', isFooter)
+  const handleSendMessage = async (e: FormEvent) => {
+    e.preventDefault();
+    console.log('USER MESAGE', userMessage);
+    if (!userMessage) return;
 
-  const iconBottomClass = isFooter ? 'bottom-[7rem]' : '!bottom-0';
-  const chatWindowBottomClass = isFooter
-    ? 'bottom-[calc(4rem+1rem+4rem)]'
-    : 'bottom-[calc(4rem+1rem)]';
+    const mewMessage: Message = {
+      role: 'user',
+      content: userMessage,
+    };
+    console.log('NEW MESSAGE', mewMessage);
+
+    setMessgaes((prevMessage) => [...prevMessage, mewMessage]);
+    setLoading(true);
+
+    // try {
+    //   const chatMessages = messages.slice(1);
+    //   console.log('Chat messages', chatMessages);
+    // } catch () {
+
+    // }
+  };
 
   return (
     <div>
@@ -26,7 +43,7 @@ const ChatBot = ({ isFooter = false }: Props) => {
         onClick={() => setShowChat(!showChat)}
         className={clsx(
           'fixed bottom-8 right-4 hover:cursor-pointer hover:text-blue-400 sm:right-12',
-          iconBottomClass,
+          'bottom-[7rem]',
           { 'animate-bounce': !showChat },
         )}
       />
@@ -34,7 +51,7 @@ const ChatBot = ({ isFooter = false }: Props) => {
         <div
           className={clsx(
             'fixed right-2 h-[60vh] w-[90%] max-w-[320px] rounded-2xl bg-sky-700 p-5 shadow-md shadow-white',
-            chatWindowBottomClass,
+            'bottom-[7rem]',
             'sm:right-12 sm:h-[400px] sm:max-w-md',
           )}
         >
@@ -46,10 +63,20 @@ const ChatBot = ({ isFooter = false }: Props) => {
               <p className="text-gray-300">Powered by OpenAI</p>
             </div>
             <div className="mt-5 flex flex-1 flex-col items-center overflow-y-auto p-2 text-gray-300">
-              <BotMessage />
-              <UserMessage />
+              {messages &&
+                messages.map((m, i) => {
+                  return m.role === 'assistant' ? (
+                    <BotMessage {...m} key={i} />
+                  ) : (
+                    <UserMessage {...m} key={i} />
+                  );
+                })}
             </div>
-            <ChatInput />
+            <ChatInput
+              userMessage={userMessage}
+              setUserMessage={setUserMessage}
+              handleSendMessage={handleSendMessage}
+            />
           </div>
         </div>
       )}

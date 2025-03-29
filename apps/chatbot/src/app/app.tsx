@@ -9,7 +9,7 @@ export function App() {
   return (
     // <div className="bg-fuchsia-300 min-h-screen p-5">
     //   {/* <NxWelcome title=">>chatbot<<" /> */}
-    <ChatBot isFooter={true} />
+    <ChatBot />
 
     // </div>
   );
