@@ -11,8 +11,23 @@ const ChatBot = () => {
   const [userMessage, setUserMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [messages, setMessgaes] = useState<Message[]>([
-    { role: 'assistant', content: 'Hello, how may I help you?' },
+    {
+      role: 'assistant',
+      content:
+        "Hey there, book buff! Ready to dive into a world of wild page-turners? I've got more novel recommendations than a library on a caffeine high!",
+    },
   ]);
+
+  const renderMessage = (msg: Message, idx: number) => {
+    switch (msg.role) {
+      case 'assistant':
+        return <BotMessage {...msg} key={idx} />;
+      case 'user':
+        return <UserMessage {...msg} key={idx} />;
+      default:
+        return null;
+    }
+  };
 
   const handleSendMessage = async (e: FormEvent) => {
     e.preventDefault();
@@ -26,6 +41,7 @@ const ChatBot = () => {
     console.log('NEW MESSAGE', mewMessage);
 
     setMessgaes((prevMessage) => [...prevMessage, mewMessage]);
+    setUserMessage('');
     setLoading(true);
 
     // try {
@@ -63,14 +79,7 @@ const ChatBot = () => {
               <p className="text-gray-300">Powered by OpenAI</p>
             </div>
             <div className="mt-5 flex flex-1 flex-col items-center overflow-y-auto p-2 text-gray-300">
-              {messages &&
-                messages.map((m, i) => {
-                  return m.role === 'assistant' ? (
-                    <BotMessage {...m} key={i} />
-                  ) : (
-                    <UserMessage {...m} key={i} />
-                  );
-                })}
+              {messages.map(renderMessage)}
             </div>
             <ChatInput
               userMessage={userMessage}
