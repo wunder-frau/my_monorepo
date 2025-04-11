@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import { GiBookshelf } from 'react-icons/gi';
 import BotMessage from './BotMessage.js';
 import ChatInput from './ChatInput.js';
@@ -17,6 +17,19 @@ const ChatBot = () => {
         "Hey there, book buff! Ready to dive into a world of wild page-turners? I've got more novel recommendations than a library on a caffeine high!",
     },
   ]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowChat(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const renderMessage = (msg: Message, idx: number) => {
     switch (msg.role) {
