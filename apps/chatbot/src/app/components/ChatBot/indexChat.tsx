@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState, useEffect, useRef } from 'react';
 import { GiBookshelf } from 'react-icons/gi';
 import BotMessage from './BotMessage.js';
 import ChatInput from './ChatInput.js';
@@ -17,6 +17,7 @@ const ChatBot = () => {
         "Hey there, book buff! Ready to dive into a world of wild page-turners? I've got more novel recommendations than a library on a caffeine high!",
     },
   ]);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -25,9 +26,19 @@ const ChatBot = () => {
       }
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        chatWindowRef.current &&
+        !chatWindowRef.current.contains(event.target as Node)
+      ) {
+        setShowChat(false);
+      }
+    };
     document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -78,6 +89,7 @@ const ChatBot = () => {
       />
       {showChat && (
         <div
+          ref={chatWindowRef}
           className={clsx(
             'fixed right-2 h-[60vh] w-[90%] max-w-[320px] rounded-2xl bg-sky-700 p-5 shadow-md shadow-white',
             'bottom-[7rem]',
