@@ -18,6 +18,7 @@ const ChatBot = () => {
     },
   ]);
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const [hasBounced, setHasBounced] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -81,10 +82,13 @@ const ChatBot = () => {
       <GiBookshelf
         size={48}
         onClick={() => setShowChat(!showChat)}
+        onAnimationEnd={() => setHasBounced(true)}
         className={clsx(
           'fixed bottom-8 right-4 hover:cursor-pointer hover:text-blue-400 sm:right-12',
           'bottom-[7rem]',
-          { 'animate-bounce': !showChat },
+          {
+            'animate-bounce-once': !showChat && !hasBounced,
+          },
         )}
       />
       {showChat && (

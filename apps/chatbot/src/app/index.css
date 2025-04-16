@@ -3,3 +3,17 @@
 @theme {
   --font-sans: InterVariable, sans-serif;
 }
+
+@keyframes bounce-once {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25%);
+  }
+}
+
+.animate-bounce-once {
+  animation: bounce-once 3s linear 1;
+}
